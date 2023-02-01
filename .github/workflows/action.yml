@@ -31,7 +31,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: aqeel1211/nested-action-2/.github/workflows/action.yml
+    - uses: aqeel1211/nested-action-2/.github/workflows@main
       with:
         ENV_TYPE: ${{ inputs.ENV_TYPE }}
         GIT_BRANCH: ${{ inputs.GIT_BRANCH }}
