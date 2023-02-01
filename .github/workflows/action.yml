@@ -1,0 +1,38 @@
+name: nested action 1
+
+inputs:
+  GIT_BRANCH:
+    description: 'branch name'
+    required: true
+  ENV_TYPE:
+    description: 'environment name'
+    required: true
+  TAGS:
+    description: 'Environment'
+    required: true
+  RETRY_FAILED_TESTS:
+    description: 'Retry Failed Tests'
+    required: false
+
+# runs:
+#   using: "composite"
+#   steps:
+#     - uses: actions/checkout@v3
+#       with:
+#         repository: 'aqeel1211/nested-action-1'
+#         ref: main
+
+#     - name: Set allure variables
+#       run: |
+#         echo ${{ inputs.ENV_TYPE }}
+#         echo ${{ inputs.GIT_BRANCH }}
+#         echo ${{ inputs.TAGS }}
+#       shell: bash
+runs:
+  using: "composite"
+  steps:
+    - uses: aqeel1211/nested-action-2/.github/workflows/action.yml
+      with:
+        ENV_TYPE: ${{ inputs.ENV_TYPE }}
+        GIT_BRANCH: ${{ inputs.GIT_BRANCH }}
+        TAGS: ${{ inputs.TAGS }}
